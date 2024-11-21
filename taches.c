@@ -59,15 +59,31 @@ void modifierTache(struct tache *t , int monchoix , char nouvelleV[]){
 
     }
 }
+void SupprimerTache(struct tache *t){
+
+    t->id=0;
+    strcpy(t->titre,"");
+    strcpy(t->description,"");
+    strcpy(t->dateEch,"");
+    strcpy(t->priorite,"");
+
+    printf("suppression avec succes");
+
+
+
+
+    
+    
+}
 
 int main(){
 
-    struct tache  lestaches[Max];
+    struct tache  lestaches[Max]={0};
     int choix;
     int id =0;
 
     do{
-        printf("entrez 1 pour la creation d'une tache . \n  entrez 2 pour l'affichage d'une tache . \n  entrez 3 pour la modification d'une tache . \n  __________  :  ");
+        printf("entrez 1 pour la creation d'une tache . \n  entrez 2 pour l'affichage d'une tache . \n  entrez 3 pour la modification d'une tache . \n  entrez 4 pour supprimer une tache \n __________  :  ");
         scanf("%d",&choix);
 
         switch(choix){
@@ -78,7 +94,7 @@ int main(){
             case 2 : 
             for (int i = 0;i<id;i++){
                 afficherTaches(lestaches[i]);
-                break;
+                
             }
             break;
             
@@ -88,15 +104,27 @@ int main(){
             int lechoix;
 
             printf("entrez l'id du tache");
-            scanf("%d",idchange);
+            scanf("%d",&idchange);
 
             printf("pour modifier la discription entrez 1  . \n pour modifier la  date d'échéance entrez 2  . \n pour modifier la priorite entrez 3  . \n entrez votre choix__ : ");
             scanf("%d",&lechoix);
 
             printf("entrez votre modification : ");
-            scanf("%s",&new);
+            scanf("%s",new);
 
             modifierTache(&lestaches[idchange-1],lechoix,new);
+            break;
+            case 4 : 
+            int idsup;
+
+            printf("entrez l'id du tache a supprimer");
+            scanf("%d",&idsup);
+
+            SupprimerTache(&lestaches[idsup-1]);
+            break;
+            default:
+            printf("choix indisponible");
+            break;
 
             
         }
