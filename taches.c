@@ -24,7 +24,7 @@ void CreatTache(struct tache *t, int idd){
         printf("Entrer le statut ( complete / incomplte): ");
         scanf("%s", t->statut);
 
-        if (strcmp(t->statut, "complete") == 0 || strcmp(t->priorite, "incomplete") == 0) {
+        if (strcmp(t->statut, "complete") == 0 || strcmp(t->statut, "incomplete") == 0) {
             break;                                                             
         } else {
             printf("choix indisponible , entrez 'complete' ou 'incomplete'.\n");
@@ -71,7 +71,6 @@ void modifierTache(struct tache *t,int determin , char newval[]){
         case 3 : 
         strcpy(t->priorite,newval);
         break;
-
         default : 
         printf("indisponible ");
         break;
