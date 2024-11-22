@@ -10,19 +10,21 @@ struct tache {
     char description[100];
     char  dateEch[100];
     char priorite[20];
-    
+    char statut[30];
 };
 void CreatTache(struct tache *t, int idd){
     t->id=idd;
     printf("entrez le titre du tache :  ");
-    scanf("%s",t->titre);
+    scanf(" %[^\n]",t->titre);
     printf("entrez la description tache :  ");
-    scanf("%s",t->description);
+    scanf(" %[^\n]",t->description);
     printf("entrez la  date d'echeance du tache :  ");
-    scanf("%s",t->dateEch);
+    scanf(" %[^\n]",t->dateEch);
+    printf("entrez le statut  du tache :  ");
+    scanf("%s",t->statut);
    
 
-   while (1) {
+   while (1) {       b
         printf("Entrer la the priorite ( high / low): ");
         scanf("%s", t->priorite);
 
@@ -43,6 +45,8 @@ void afficherTache(struct tache t ){
     printf("la description _  : %s \n",t.description);
 
     printf("la date _  : %s \n",t.dateEch);
+
+    printf("le statut _  : %s \n",t.statut);
 
     printf("la priorite _  : %s \n ___________________________ \n",t.priorite);
 
@@ -85,6 +89,26 @@ void filtreTache(struct tache *t , char prio[20]){
 
         printf("la date _  : %s \n",t->dateEch);
 
+        printf("la date _  : %s \n",t->statut);
+
+        printf("la priorite _  : %s \n",t->priorite);
+    }
+}
+
+void filtrerParStatut(struct tache *t , char stat[20]){
+
+    if(strcmp(t->statut,stat)==0){
+
+        printf("l'id _  : %d \n",t->id);
+
+        printf("la tache _  : %s \n",t->titre);
+
+        printf("la description _  : %s \n",t->description);
+
+        printf("la date _  : %s \n",t->dateEch);
+
+        printf("la e statut _  : %s \n",t->statut);
+
         printf("la priorite _  : %s \n",t->priorite);
     }
 }
@@ -96,12 +120,13 @@ int main(){
     char new[30];
     int idsup ;
     char laprio[20];
+    char lestatut[30];
 
             
     
 
     do {
-        printf(" 1 creer \n 2 afficher \n 3 modifier \n 4 supprimer     ");
+        printf(" 1 creer \n 2 afficher \n 3 modifier \n 4 supprimer  \n 5 filtrer par priorité \n 6 filtrer par statut \n   ");
         scanf("%d",&choix);
 
         switch (choix){
@@ -153,6 +178,23 @@ int main(){
                     
             }
             break;
+            case 6 :
+            printf("entrez le statut  : ");
+            scanf("%s",lestatut);
+            if(strcmp(lestatut,"complete")==0  || strcmp(lestatut,"incomplete")==0){
+                for (int i  =0 ; i<id ; i++){
+                    filtrerParStatut(&lestaches[i],lestatut);
+
+                }
+            }else{
+                printf("hors choix !!!");
+            
+            
+             
+                    
+            }
+            break;
+
 
 
 
