@@ -10,6 +10,7 @@ struct tache {
     char description[100];
     char  dateEch[100];
     char priorite[20];
+    
 };
 void CreatTache(struct tache *t, int idd){
     t->id=idd;
@@ -19,8 +20,18 @@ void CreatTache(struct tache *t, int idd){
     scanf("%s",t->description);
     printf("entrez la  date d'echeance du tache :  ");
     scanf("%s",t->dateEch);
-    printf("entrez le priorite du tache :  ");
-    scanf("%s",t->priorite);
+   
+
+   while (1) {
+        printf("Entrer la the priorite ( high / low): ");
+        scanf("%s", t->priorite);
+
+        if (strcmp(t->priorite, "high") == 0 || strcmp(t->priorite, "low") == 0) {
+            break;                                                             
+        } else {
+            printf("choix indisponible , entrez 'high' ou 'low'.\n");
+        }
+    }
 
 }
 void afficherTache(struct tache t ){
@@ -34,8 +45,8 @@ void afficherTache(struct tache t ){
     printf("la date _  : %s \n",t.dateEch);
 
     printf("la priorite _  : %s \n ___________________________ \n",t.priorite);
-  }
 
+  }
 }
 void modifierTache(struct tache *t,int determin , char newval[]){
     switch(determin){
@@ -50,7 +61,7 @@ void modifierTache(struct tache *t,int determin , char newval[]){
         break;
 
         default : 
-        printf("indisponible");
+        printf("indisponible ");
         break;
     }
 }
@@ -129,10 +140,16 @@ int main(){
             case 5 :
             printf("entrez la priorité (high ou low) : ");
             scanf("%s",laprio);
-            
-            
-             for (int i  =0 ; i<id ; i++){
+            if(strcmp(laprio,"high")==0  || strcmp(laprio,"low")==0){
+                for (int i  =0 ; i<id ; i++){
                     filtreTache(&lestaches[i],laprio);
+
+                }
+            }else{
+                printf("hors ch !!!");
+            
+            
+             
                     
             }
             break;
