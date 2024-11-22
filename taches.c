@@ -20,11 +20,19 @@ void CreatTache(struct tache *t, int idd){
     scanf(" %[^\n]",t->description);
     printf("entrez la  date d'echeance du tache :  ");
     scanf(" %[^\n]",t->dateEch);
-    printf("entrez le statut  du tache :  ");
-    scanf("%s",t->statut);
+    while (1) {       
+        printf("Entrer le statut ( complete / incomplte): ");
+        scanf("%s", t->statut);
+
+        if (strcmp(t->statut, "complete") == 0 || strcmp(t->priorite, "incomplete") == 0) {
+            break;                                                             
+        } else {
+            printf("choix indisponible , entrez 'complete' ou 'incomplete'.\n");
+        }
+    }
    
 
-   while (1) {       b
+   while (1) {       
         printf("Entrer la the priorite ( high / low): ");
         scanf("%s", t->priorite);
 
@@ -71,11 +79,6 @@ void modifierTache(struct tache *t,int determin , char newval[]){
 }
 void supprimerTache(struct tache *t){
     t->id=0;
-    strcpy(t->titre,"");
-    strcpy(t->description,"");
-    strcpy(t->dateEch,"");
-    strcpy(t->priorite,"");
-
     printf("suppression avec succes");
 
 }
@@ -163,7 +166,7 @@ int main(){
             supprimerTache(&lestaches[idsup-1]);
             break;
             case 5 :
-            printf("entrez la priorité (high ou low) : ");
+            printf("entrez la priorite (high ou low) : ");
             scanf("%s",laprio);
             if(strcmp(laprio,"high")==0  || strcmp(laprio,"low")==0){
                 for (int i  =0 ; i<id ; i++){
