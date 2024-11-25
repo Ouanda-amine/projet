@@ -82,37 +82,23 @@ void supprimerTache(struct tache *t){
 
 }
 void filtreTache(struct tache *t , char prio[20]){
-    if(strcmp(t->priorite,prio)==0){
-        printf("l'id _  : %d \n",t->id);
-
-        printf("la tache _  : %s \n",t->titre);
-
-        printf("la description _  : %s \n",t->description);
-
-        printf("la date _  : %s \n",t->dateEch);
-
-        printf("la date _  : %s \n",t->statut);
-
-        printf("la priorite _  : %s \n",t->priorite);
+    for (int i = 0; i < t->id; i++)
+    {
+        if(strcmp(t->priorite,prio)==0){
+       afficherTache(t[i]);
     }
+    }
+    
 }
 
 void filtrerParStatut(struct tache *t , char stat[20]){
 
-    if(strcmp(t->statut,stat)==0){
+  for(int i =0;i < t->id;i++){
+      if(strcmp(t->statut,stat)==0){
 
-        printf("l'id _  : %d \n",t->id);
-
-        printf("la tache _  : %s \n",t->titre);
-
-        printf("la description _  : %s \n",t->description);
-
-        printf("la date _  : %s \n",t->dateEch);
-
-        printf("la e statut _  : %s \n",t->statut);
-
-        printf("la priorite _  : %s \n",t->priorite);
+       afficherTache(t[i]);
     }
+  }
 }
 int main(){
     struct tache lestaches[MAX];
