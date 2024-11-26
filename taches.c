@@ -30,8 +30,6 @@ void CreatTache(struct tache *t, int idd){
             printf("choix indisponible , entrez 'complete' ou 'incomplete'.\n");
         }
     }
-   
-
    while (1) {       
         printf("Entrer la the priorite ( high / low): ");
         scanf("%s", t->priorite);
@@ -90,7 +88,6 @@ void filtreTache(struct tache *t , char prio[20]){
     }
     
 }
-
 void filtrerParStatut(struct tache *t , char stat[20]){
 
   for(int i =0;i < t->id;i++){
@@ -100,6 +97,10 @@ void filtrerParStatut(struct tache *t , char stat[20]){
     }
   }
 }
+
+
+
+
 int main(){
     struct tache lestaches[MAX];
     int id =0;
@@ -133,8 +134,10 @@ int main(){
 
             printf("entrez l'id du tache a modifier : ");
             scanf("%d",&idmod);
-
-            printf("1 modifier description \n 2 modifier dateEcheante \n 3 modifier priorite ");
+            if(idmod>id){
+                printf("id n'existe pas !");
+            }else{
+                printf("1 modifier description \n 2 modifier dateEcheante \n 3 modifier priorite ");
             scanf("%d",&lechoix);
 
             printf("entrez votre modification : ");
@@ -142,13 +145,23 @@ int main(){
 
             modifierTache(&lestaches[idmod-1],lechoix,new);
 
+            }
+
+            
+
             break;
 
             case 4 :
-            printf("entrez l 'id du tache a supprimer : ");
-            scanf("%d",&idsup);
+             printf("entrez l 'id du tache a supprimer : ");
+                 scanf("%d",&idsup);
 
-            supprimerTache(&lestaches[idsup-1]);
+            if(idsup>id){
+                printf("id n'existe pas");
+            }else{
+                
+                 supprimerTache(&lestaches[idsup-1]);
+            }
+           
             break;
             case 5 :
             printf("entrez la priorite (high ou low) : ");
@@ -160,10 +173,7 @@ int main(){
                 }
             }else{
                 printf("hors ch !!!");
-            
-            
-             
-                    
+                  
             }
             break;
             case 6 :
@@ -175,22 +185,12 @@ int main(){
 
                 }
             }else{
-                printf("hors choix !!!");
-            
-            
-             
+                printf(" choix indisponible !!!"); 
                     
             }
-            break;
-
-
-
-
-    
-
-           
+            break;         
             default : 
-            printf("error");
+            printf("choix indisponible !!");
             break;
 
             
